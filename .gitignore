@@ -1,0 +1,26 @@
+# Derleme (Build) Çıktıları
+build/
+bin/
+*.o
+*.obj
+*.out
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+
+# IDE ve Editör Klasörleri
+.vscode/
+.idea/
+*.suo
+*.sln
+CMakeLists.txt.user
+
+# İşletim Sistemi Kalıntıları
+.DS_Store
+Thumbs.db
+
+# Log ve Çıktı Dosyaları (Eğer simülasyon sonuçlarını pushlamak istemiyorsan)
+report.txt
+course_registration.txt
