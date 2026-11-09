@@ -32,5 +32,17 @@ This project uses CMake for building, making it cross-platform and compiler-inde
 ### Build Steps (Terminal)
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/your-username/CourseRegistrationOptimizer.git](https://github.com/your-username/CourseRegistrationOptimizer.git)
+   git clone https://github.com/Firatdondar/CourseRegistrationOptimizer.git
    cd CourseRegistrationOptimizer
+   ```
+2. Configure and build with CMake:
+   ```bash
+   mkdir build
+   cd build
+   cmake ..
+   cmake --build .
+   ```
+3. Run the executable:
+   ```bash
+   ./CourseRegistrationOptimizer
+   ```
