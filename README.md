@@ -1,48 +1,75 @@
-# Course Registration Optimizer
+# 🎓 Course Registration Optimizer
 
-An intelligent university course registration system built with C++ that maximizes academic value within credit limits and simulates daily campus logistics using advanced pathfinding.
+![C++17](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=c%2B%2B&logoColor=white)
+![CMake](https://img.shields.io/badge/CMake-3.10%2B-064F8C?logo=cmake&logoColor=white)
+![Algorithms](https://img.shields.io/badge/Algorithms-Knapsack%20DP%20%26%20Dijkstra-purple)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
-## 📌 Project Overview
-During the course registration period, students must select courses that offer the highest academic contribution without exceeding their maximum ECTS limit. Additionally, they need to physically navigate between different classrooms spread across a large campus. 
+An algorithmic university course selection and campus logistics simulator built in **C++17**. It maximizes academic credit utility using **0/1 Knapsack Dynamic Programming** and verifies inter-building transition feasibility between consecutive lectures using **Dijkstra's Shortest Path Algorithm**.
 
-This project solves both problems by implementing:
-1. **0/1 Knapsack Algorithm (Dynamic Programming):** Optimizes course selection by maximizing the "Importance Score" against the student's ECTS capacity limit.
-2. **Dijkstra's Shortest Path Algorithm:** Calculates the optimal walking routes between campus buildings to verify if a student can attend their selected courses on time.
+---
 
-## ⚙️ Features
-* **Smart Course Selection:** Calculates dynamic importance scores based on course type (Mandatory/Elective) and prerequisite weight.
-* **Campus Routing:** Uses a distance matrix to represent the campus layout and finds the shortest walking paths.
-* **Time Simulation:** Simulates a student's day starting at 07:45, accounting for 50-minute lectures, 10-minute breaks, and varying walking speeds (80 meters/minute).
-* **Comprehensive Reporting:** Generates detailed text reports (`report.txt` and `course_registration.txt`) showing enrolled courses, scores, arrival times, and missed classes due to distance.
+## 📌 Problem Overview
 
-## 🛠️ Technologies & Principles
-* **Language:** C++ (Standard 17)
-* **Build System:** CMake
-* **Architecture:** Object-Oriented Programming (OOP)
-* **Data Structures:** Custom Dynamic Arrays (Standard Template Library (STL) was strictly avoided by design requirements).
+During university course registration, students face two coupled optimization challenges:
+1. **Academic Value Maximization:** Selecting a subset of courses that maximizes total academic importance without exceeding the student's maximum ECTS credit limit.
+2. **Campus Transit Feasibility:** Navigating between lecture halls across campus within the 10-minute break between 50-minute class sessions (walking at $80\text{ m/min}$ starting from `07:45`).
 
-## 🚀 Installation & Build Instructions
+---
 
-This project uses CMake for building, making it cross-platform and compiler-independent.
+## ✨ Key Features
+
+- **0/1 Knapsack Course Optimizer:** Computes dynamic course importance weights based on mandatory/elective status and prerequisite chains, solving the credit-constrained optimization problem in $O(N \cdot W)$ time.
+- **Dijkstra Shortest Path Router:** Models campus buildings as a weighted graph (`data/classrooms.txt`) and computes shortest walking paths and travel durations between consecutive lectures.
+- **Custom STL-Free Data Structures:** Built from scratch using a custom templated dynamic array (`CustomVector<T>`) with manual memory management and zero STL container dependencies.
+- **Automated Schedule & Attendance Audit:** Outputs `course_registration.txt` and `report.txt` detailing enrolled courses, total ECTS, walking distances, arrival timestamps, and tardiness warnings.
+
+---
+
+## 🗂️ Project Structure
+
+```text
+Course-Registration-Optimizer/
+├── data/
+│   ├── classrooms.txt       # Campus building distance matrix
+│   ├── courses.txt          # Course catalog, ECTS credits, and prerequisites
+│   └── students.txt         # Student profiles and ECTS capacity limits
+├── include/
+│   ├── Course.hpp           # Course entity & importance score model
+│   ├── CustomVector.hpp     # Custom dynamic array template (STL-free)
+│   ├── Graph.hpp            # Campus graph & Dijkstra shortest path solver
+│   └── Student.hpp          # Student schedule & 0/1 Knapsack DP solver
+├── src/
+│   └── main.cpp             # Simulation entry point & report generator
+├── CMakeLists.txt           # Cross-platform CMake build configuration
+├── LICENSE                  # MIT License
+└── README.md                # Project documentation
+```
+
+---
+
+## 🚀 Build & Run Instructions
 
 ### Prerequisites
-* CMake (>= 3.10)
-* A C++ compiler (GCC, Clang, or MSVC)
+- **CMake** ($\ge 3.10$)
+- **C++17 Compiler** (GCC, Clang, or MSVC)
 
-### Build Steps (Terminal)
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Firatdondar/CourseRegistrationOptimizer.git
-   cd CourseRegistrationOptimizer
-   ```
-2. Configure and build with CMake:
-   ```bash
-   mkdir build
-   cd build
-   cmake ..
-   cmake --build .
-   ```
-3. Run the executable:
-   ```bash
-   ./CourseRegistrationOptimizer
-   ```
+### Build with CMake
+```bash
+git clone https://github.com/Firatdondar/Course-Registration-Optimizer.git
+cd Course-Registration-Optimizer
+mkdir build && cd build
+cmake ..
+cmake --build .
+```
+
+### Run the Optimizer
+```bash
+./CourseRegistrationOptimizer
+```
+
+---
+
+## 📄 License
+
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for details.
